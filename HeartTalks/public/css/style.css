@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Nunito', Arial, sans-serif;
+    background: #e9ebf0;
+    color: #1c1e21;
+}
+
+/* sticky purple topbar, stays at the top when you scroll */
+.topbar {
+    background: #5b0fa8;
+    color: white;
+    padding: 0 20px;
+    height: 56px;
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+a {
+    text-decoration: none;
+    color: #5b0fa8;
+    font-weight: 700;
+}
+
+a:hover { text-decoration: underline; }
+
+/* all buttons share the same purple style */
+button {
+    background: #5b0fa8;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top: 8px;
+    transition: background 0.15s;
+}
+
+button:hover { background: #4a0d8a; }
+
+/* inputs and textareas look the same across all pages */
+input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    background: #f0f2f5;
+    transition: border 0.15s, background 0.15s;
+}
+
+/* highlight the border when the user clicks into a field */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #5b0fa8;
+    background: white;
+}
+
+/* shared centered layout used on home, profile, and auth pages */
+.container, .feed, .wrap {
+    width: 680px;
+    margin: 20px auto;
+}
+
+/* white cards used for posts, the post box, and profile sections */
+.card, .post, .postbox {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+/* small gray text, used for timestamps and secondary info */
+.small {
+    color: #65676b;
+    font-size: 12px;
+}
+
+/* each row in friend lists and people you may know */
+.user {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user:last-child { border-bottom: none; }
+
+/* nav bar below the topbar */
+.topmenu {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* - Post author header - */
+.post-author {
+    font-weight: 800;
+    font-size: 15px;
+    margin: 0 0 2px;
+}
+
+.post-content {
+    font-size: 15px;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* - Reaction bar - */
+/* sits between the post content and the comments */
+.reaction-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 0;
+    border-top: 1px solid #f0f2f5;
+    border-bottom: 1px solid #f0f2f5;
+    margin: 8px 0;
+    position: relative;
+}
+
+/* the like/react button, styled flat so it doesn't look like a normal button */
+.react-btn {
+    background: none;
+    border: none;
+    color: #65676b;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+    position: relative;
+}
+
+.react-btn:hover { background: #f0f2f5; }
+
+/* the emoji popup that appears when you hover the react button */
+.reaction-picker {
+    display: none;
+    position: absolute;
+    bottom: 42px; /* sits above the button */
+    left: 0;
+    background: white;
+    border-radius: 40px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    gap: 4px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+/* show the picker when hovering the wrapper div */
+.reaction-wrap:hover .reaction-picker { display: flex; }
+
+.reaction-emoji {
+    font-size: 26px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 2px;
+    transition: transform 0.15s;
+    text-decoration: none;
+}
+
+/* scale up on hover so it feels clickable */
+.reaction-emoji:hover {
+    transform: scale(1.4) translateY(-4px);
+    text-decoration: none;
+}
+
+/* shows which emojis were used and the total count, pushed to the right */
+.reaction-summary {
+    font-size: 13px;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+/* - Comments - */
+.comment-section { margin-top: 8px; }
+
+.comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* rounded bubble style like messenger */
+.comment-bubble {
+    background: #f0f2f5;
+    padding: 8px 12px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.comment-bubble b { font-size: 13px; }
+
+/* comment input and send button side by side */
+.comment-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.comment-form input {
+    flex: 1;
+    margin-top: 0;
+    border-radius: 20px;
+    background: #f0f2f5;
+    padding: 8px 14px;
+}
+
+.comment-form button {
+    margin-top: 0;
+    border-radius: 20px;
+    padding: 8px 14px;
+}
+
+/* - Auth pages (login and register) - */
+.auth-wrap {
+    max-width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-wrap h2 { margin-top: 0; color: #1c1e21; }
+
+.auth-wrap input { margin-bottom: 10px; }
+
+.msg-error { color: #d32f2f; font-size: 14px; }
+.msg-success { color: #2e7d32; font-size: 14px; }
+
+/* - Profile cards - */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* circle showing the first letter of the user's name instead of a photo */
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #5b0fa8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.friend-count {
+    font-size: 13px;
+    color: #65676b;
+}
+
+/* make the layout fit smaller screens */
+@media (max-width: 720px) {
+    .container, .feed, .wrap { width: 100%; padding: 0 8px; }
+}
